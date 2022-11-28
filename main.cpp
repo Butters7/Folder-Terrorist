@@ -4,8 +4,6 @@ using namespace BMSTU;
 
 void createFiles(const std::filesystem::path &path_to_folder);
 
-int checkTerFiles(const std::filesystem::path &path_to_folder);
-
 void addFile(const std::filesystem::path &path_to_folder);
 
 void startTerror(const std::filesystem::path &path_to_folder) {

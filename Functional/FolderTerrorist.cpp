@@ -2,6 +2,17 @@
 
 using namespace BMSTU;
 
+int FolderTerror::checkTerFiles(const std::filesystem::path &folder_path) {
+    int iter = 0;
+    using std::filesystem::recursive_directory_iterator;
+    for (auto &file: recursive_directory_iterator(folder_path)) {
+        if (file.path().extension().string() == ".ter") {
+            ++iter;
+        }
+    }
+    return iter;
+}
+
 FolderTerror &FolderTerror::getInstance(const std::filesystem::path &folder_path) {
     static FolderTerror instance(folder_path);
     return instance;

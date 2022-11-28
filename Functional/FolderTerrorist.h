@@ -25,6 +25,8 @@ namespace BMSTU {
         //Function that contain signal from OS
         static void signalProcessing();
 
+        static int checkTerFiles(const std::filesystem::path &folder_path);
+
     private:
         std::queue<std::filesystem::path> terror_wait_files_;
         std::filesystem::path folder_path_;

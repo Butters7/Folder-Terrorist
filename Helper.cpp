@@ -16,17 +16,6 @@ void createFiles(const std::filesystem::path &path_to_folder) {
     }
 }
 
-int checkTerFiles(const std::filesystem::path &path_to_folder) {
-    int iter = 0;
-    using std::filesystem::recursive_directory_iterator;
-    for (auto &file: recursive_directory_iterator(path_to_folder)) {
-        if (file.path().extension().string() == ".ter") {
-            iter++;
-        }
-    }
-    return iter;
-}
-
 void addFile(const std::filesystem::path &path_to_folder) {
     const std::string slash = std::filesystem::current_path().root_directory().string();
     std::filesystem::path path_to_file = path_to_folder.string() + slash + "in_a.txt";
