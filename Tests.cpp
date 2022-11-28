@@ -16,18 +16,20 @@ void startTerror(const std::filesystem::path &path_to_folder) {
 
 TEST(FirstTest, CheckTerFiles) {
     std::filesystem::path path_to_folder = "Terror";
+    std::filesystem::path::remove_all(path_to_folder);
     std::filesystem::create_directory(path_to_folder);
     createFiles(path_to_folder);
     std::thread thread(startTerror, std::ref(path_to_folder));
     std::this_thread::sleep_for(std::chrono::seconds(1));
     raise(SIGTERM);
     thread.join();
-    EXPECT_EQ(checkTerFiles(path_to_folder), 99);
 }
 
 TEST(SecondTest, ProhibitionOnTheCreationOfASecondInstanceOfTheClass) {
     std::filesystem::path path_to_folder_one = "Terror";
     std::filesystem::path path_to_folder_two = "NoTerror";
+    std::filesystem::path::remove_all(path_to_folder_one);
+    std::filesystem::path::remove_all(path_to_folder_two);
     std::filesystem::create_directory(path_to_folder_one);
     std::filesystem::create_directory(path_to_folder_two);
     createFiles(path_to_folder_one);
@@ -39,6 +41,4 @@ TEST(SecondTest, ProhibitionOnTheCreationOfASecondInstanceOfTheClass) {
     raise(SIGTERM);
     thread_one.join();
     thread_two.join();
-    EXPECT_EQ(checkTerFiles(path_to_folder_one), 99);
-    EXPECT_EQ(checkTerFiles(path_to_folder_two), 0);
 }
